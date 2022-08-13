@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import { Statistics } from "../Statistics/Statistics";
+import { ButtonFeedback } from "../ButtonFeedback/ButtonFeedback";
+
 export class Feedback extends Component {
   state = {
     good: 0,
@@ -7,26 +10,31 @@ export class Feedback extends Component {
     bad: 0
   }
 
-  onClickBtn = () => {
-    // console.log('clicked', this.state)
-    this.setState({})
+  onClickButton = event => {
+    const state = event.target.innerText;
+    console.log(state);
+    this.setState(prevState => {
+      return { [state]: prevState[state] + 1 };
+    });
   };
-
-  onClickGood = () => {
-    this.setState((prevState) => {
-      console.log({ prevState });
-      return { good: prevState.good + 1}
-    })
-  }
 
   render() {
     console.log(this.state);
+    const buttons = Object.keys(this.state)
+    // console.log(buttons);
+
     return (
       <>
         <h2> Please leave feedback </h2>
-        <button onClick={this.onClickGood}>good</button>
-        <button onClick={this.onClickBtn}>neutral</button>
-        <button onClick={this.onClickBtn}>bad</button>
+        <ButtonFeedback
+          buttons={buttons}
+          onClickButton={this.onClickButton} />
+        <h2> Statistics </h2>
+          <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          />
       </>
     )
   }
