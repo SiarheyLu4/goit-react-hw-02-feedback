@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
+
 
 import { Statistics } from "../Statistics/Statistics";
 import { ButtonFeedback } from "../ButtonFeedback/ButtonFeedback";
@@ -37,7 +39,7 @@ export class Feedback extends Component {
     const {good, neutral, bad} = this.state;
 
     return (
-      <>
+      <Card>
         <Section title="Please leave feedback">
         <ButtonFeedback
           buttons={buttons}
@@ -52,7 +54,16 @@ export class Feedback extends Component {
           positivePercentage={this.countPositiveFeedbackPercentage()}
           />}
         </Section>
-      </>
+      </Card>
     )
   }
 }
+
+const Card = styled.div`
+  margin: 0 auto;
+  padding: 16px;
+  width: 400px;
+  border: 4px solid;
+  border-radius: 20px;
+  background: lavender;
+`
