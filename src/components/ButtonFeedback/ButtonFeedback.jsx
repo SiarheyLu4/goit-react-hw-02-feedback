@@ -33,6 +33,7 @@ const Li = styled.li`
 const Button = styled.button`
   font-size: 24px;
   border-radius: 12px;
+  cursor: pointer;
   background-color: gold;
   &:hover {
     background-color: lightgreen;
