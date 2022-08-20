@@ -33,10 +33,11 @@ export class Feedback extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const buttons = Object.keys(this.state)
     // console.log(buttons);
-    const {good, neutral, bad} = this.state;
+    const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback();
 
     return (
       <Card>
@@ -46,11 +47,11 @@ export class Feedback extends Component {
           onClickButton={this.onClickButton} />
         </Section>
         <Section title="Statistics">
-          {this.countTotalFeedback() === 0 ? <Notification message="There is no feedback"/> : <Statistics
+          {total === 0 ? <Notification message="There is no feedback"/> : <Statistics
           good={good}
           neutral={neutral}
           bad={bad}
-          total={this.countTotalFeedback()}
+          total={total}
           positivePercentage={this.countPositiveFeedbackPercentage()}
           />}
         </Section>
